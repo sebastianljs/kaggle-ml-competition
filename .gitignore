@@ -1,0 +1,5 @@
+# Remove solution file from git repo
+solution/test_solution.csv
+target/
+fa/
+raw/
