@@ -89,7 +89,9 @@ This report should include:
 2. A description of the method(s) used including your rational for choosing each approach. This should include a description of: (a) data preprocessing, (b) feature extraction, (c) classification algorithm(s), (d) performance evaluation.
 3. A discussion of (a) the efficacy of your approach, (b) the challenges you faced along the way, and (c) how performance could be improved.
 4. A well-commented appendix of cleanly-written code (this is in addition to the 2 page write-up). See the Matlab coding best practices document on Box for more details.
-5. The written report will be graded based on completeness (covers all of the topics described above), logical flow (tells a coherent and organized story), and professionalism (is well-written and contains header information including a title, your name, etc).
+5. References cited.
+
+The written report will be graded based on completeness (covers all of the topics described above), logical flow (tells a coherent and organized story), and professionalism (is well-written and contains header information including a title, your name, etc).
 
 ## Competition Grade
 
