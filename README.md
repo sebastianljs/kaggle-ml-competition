@@ -35,28 +35,28 @@ You have two options for submission: (1) binary decisions, or (2) confidence val
 The file should contain a header with "id" and "class", where class is a binary variable of 0 (no solar array) or 1 (solar array). An example is shown below:
 
 
-id,class
-201,0
-202,0
-203,1
-204,1
-...
-...
-330,1
+id,class  
+201,0  
+202,0  
+203,1  
+204,1  
+...  
+...  
+330,1  
 
 
 ### Option 2: Confidence values
 
 Most classifiers produce a confidence value that is thresholded to produce the final binary decision. These confidence values range from 0 to 1 and are the confidence in the given observation belonging to the target class (in this case, the class of solar arrays). The file should contain a header and have the following format:
 
-id,class
-201,0.44
-202,0.89
-203,0.33
-204,0.98
-...
-...
-330,0.05
+id,class  
+201,0.44  
+202,0.89  
+203,0.33  
+204,0.98  
+...  
+...  
+330,0.05  
 
 # Data Description
 Participants should be able to answer questions like these after reading the data description: What files do I need? What should I expect the data format to be? What am I predicting? What acroynms will I encounter?
@@ -71,8 +71,8 @@ Participants should be able to answer questions like these after reading the dat
 
 ## Fields
 
-* id - corresponds to the id of the image. For example, an id of 12 corresponds to "image12.tif"
-* class - For denoting class, 0 = "no solar panels" and 1 = "solar panels present". For the submission, the class field can also contain confidence values / scores.
+* **id** - corresponds to the id of the image. For example, an id of 12 corresponds to "image12.tif"
+* **class** - For denoting class, 0 = "no solar panels" and 1 = "solar panels present". For the submission, the class field can also contain confidence values / scores.
 
 ## Images
 
