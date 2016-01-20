@@ -11,28 +11,36 @@
 % Organization: Duke University Energy Initiative
 % Date: 19 January 2016
 
-%--------------------------------------------------------------------------
-% Testbed for exploring machine learning techniques
-%--------------------------------------------------------------------------
+% -------------------------------------------------------------------------
+% Initialize Parameters
+% -------------------------------------------------------------------------
 
-% -- Load training data and initialize parameters --------------------
-% Initialize parameters
+% Initialize parameters for training
 imageDirectoryTraining  = './train/' ;   % Adjust this directory to point to your image files for training
 trainingLabelsDirectory = './solution/' ;% Adjust this directory to point to your training label/solution files
 kFolds                  = 10 ;               % Number of folds for cross validation
 
-% Load the training data solution
+% Initialize parameters for testing
+runTestData             = 0 ; % Switch for determining whether or not the test data is classified
+submissionSampleFile    = './sampleSubmissions/sampleSubmission.csv' ; % Adjust this to point to your sample submission file
+                                                                       % Since the sample submission file has a complete list of image ids, we can
+                                                                       % use that to be our index
+imageDirectoryTesting   = './test/' ;    % Adjust this directory to point to your image files for testing
+submissionFile          = 'submission.csv' ; % Output csv submission filename
+
+%--------------------------------------------------------------------------
+% Evaluate cross-validated performance on training data
+%--------------------------------------------------------------------------
+% -- Load training data ----------------------------------------------
 trainingLabelsRaw = csvread([trainingLabelsDirectory 'train_solution.csv'],1,0) ; % Extract the class labels
 trainingLabels = sortrows(trainingLabelsRaw,1) ; % In case their not in ascending order, sort them
 trainingLabels = trainingLabels(:,2) ; % Remove the id since they are now in order and therefore can be indexed by their ids
-
 nObservations  = length(trainingLabels) ; % Total number of observations
 
-% Initialize the storage vectors
+% Initialize the training data storage vectors
 trainingFeatures = nan(nObservations,2) ; % You'll want to adjust this as you adjust the number of features
 trainingDecision = nan(nObservations,1) ;
 trainingScores   = nan(nObservations,1) ;
-
 
 % -- Extract feature vectors -----------------------------------------
 for iObservation = 1:nObservations
@@ -80,15 +88,12 @@ legend(h,'Chance Diagonal','Performance',...
         'Location','southeast')
 title(sprintf('ROC Curve (AUC = %g)',aucRoc)) ;
 
+
 %--------------------------------------------------------------------------
 % Train classifier on training data and run on test data to produce results
 % for submission to Kaggle
 %--------------------------------------------------------------------------
-% Since the sample submission file has a complete list of image ids, we can
-% use that to be our index
-submissionSampleFile    = './sampleSubmissions/sampleSubmission.csv' ; % Adjust this to point to your sample submission file
-imageDirectoryTesting   = './test/' ;    % Adjust this directory to point to your image files for testing
-submissionFile          = 'submission.csv' ; % Output csv submission filename
+if runTestData % This switch is adjusted in the initial parameters
 
 % -- Load test data and initialize parameters ------------------------
 testIds = csvread(submissionSampleFile,1,0) ; % Extract the class labels
@@ -120,3 +125,5 @@ fclose(fid) ;
 
 output = [testIds testScores] ;
 dlmwrite(submissionFile, output, '-append') ;
+
+end
