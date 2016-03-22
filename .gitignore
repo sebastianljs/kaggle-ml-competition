@@ -1,6 +1,10 @@
 # Remove solution file from git repo
-solution/test_solution.csv
 target/
 fa/
 raw/
 kyleSolution.m
+extractFeatures.m
+reduceDimensions.m
+compareMethods.m
+getAuc.m
+*.asv
